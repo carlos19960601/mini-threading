@@ -1,0 +1,5 @@
+<!--index.wxml-->
+<view class="container">
+  <canvas type="2d" id="hidden-canvas"></canvas>
+  <canvas type="2d" id="preview-canvas"></canvas>
+</view>

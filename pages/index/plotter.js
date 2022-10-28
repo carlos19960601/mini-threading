@@ -1,0 +1,2 @@
+class PlotterCanvas2D {
+}
