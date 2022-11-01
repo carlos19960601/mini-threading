@@ -1,5 +1,16 @@
 <!--index.wxml-->
-<view class="container">
-  <canvas type="2d" id="hidden-canvas"></canvas>
-  <canvas type="2d" id="preview-canvas"></canvas>
+<view class="full-view">
+  <view class="preview-canvas">
+    <canvas type="2d" id="preview-canvas" style="width: 300px; height: 300px;"></canvas>
+  </view>
+  <view class="controller-view">
+    <view class="source-view">
+      <image src="{{pictureURL}}" mode="aspectFit"></image>
+      <button bindtap="choosePicture">选择图片</button>
+    </view>
+    <view class="controller-setting">
+      <text>参数</text>
+    </view>
+  </view>
+ 
 </view>

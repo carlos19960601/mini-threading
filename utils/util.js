@@ -14,6 +14,11 @@ const formatNumber = n => {
   return n[1] ? n : `0${n}`
 }
 
+const linesOpacity = (raw)=> {
+  return Math.pow(2, raw-6)
+}
+
 module.exports = {
-  formatTime
+  formatTime,
+  linesOpacity
 }

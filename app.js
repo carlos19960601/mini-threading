@@ -1,19 +1,18 @@
 // app.js
 App({
   onLaunch() {
-    // 展示本地存储能力
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
+  
   },
   globalData: {
-    userInfo: null
+    hiddenCanvasScale: 3, //  quality 1:Low  2:Medium 3:High
+    mode: "0", // 0:Monochrome 1:Three colors
+    invertColors: false, // black background
+    shape: "1", // 0: rectangle 1: Ellipsis
+    pegsCount: 200,  // 钉子数量
+    linesOpacity: 2 ,  // [1,5]
+    linesThickness: 0.5, // [0.25,1]
+    nbLines: 500, //  [500,15000]
+    blur: 0, //[0,20]
+    displayPegs: true,
   }
 })
