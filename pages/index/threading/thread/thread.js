@@ -10,6 +10,14 @@ export class ThreadBase {
     if (fromSegmentNumber < threadLength) {
       const threadPart = thread.slice(fromSegmentNumber)
       callback(threadPart, color)
-    }  
+    }
+  }
+
+  lowerNbSegmentsForThread(thread, targetNumber) {
+    if (targetNumber > 0) {
+      thread.length = Math.min(thread.length, targetNumber+1)
+    } else {
+      thread.length = 0
+    }
   }
 }

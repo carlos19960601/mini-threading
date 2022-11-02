@@ -44,4 +44,8 @@ export class ThreadMonochrome extends ThreadBase {
   iterateOnThreads(nbSegmentsToIgnore, callback) {
     super.iterateOnThread(this.threadPegs, Color_MONOCHROME, nbSegmentsToIgnore, callback)
   }
+
+  lowerNbSegments(targetNumber) {
+    super.lowerNbSegmentsForThread(this.threadPegs, targetNumber)
+  }
 }

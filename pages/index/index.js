@@ -32,11 +32,18 @@ Page({
   changeSegmentCount: function(e) {
     app.globalData.nbLines = e.detail.value
   },
+  changeOpacity: function(e) {
+    app.globalData.linesOpacity = e.detail.value
+    needReset = true
+  },
+  changeThickness: function(e) {
+    app.globalData.linesThickness = e.detail.value
+    needReset = true
+  },
   changeShape: function(e)  {
     app.globalData.shape = e.detail.value
     needReset = true
   },
-
   onReady: async function(){
     canvasPlotter = new PlotterCanvas2D()
     await canvasPlotter.init()
@@ -61,6 +68,10 @@ Page({
     }
 
     const computedSomething = threadComputer.computeNextSegments(MAX_COMPUTING_TIME_PER_FRAME)
+
+    if (computedSomething)  {
+      
+    }
 
     threadPlotter.plot()
     canvasPlotter.canvas.requestAnimationFrame(this.renderLoop)

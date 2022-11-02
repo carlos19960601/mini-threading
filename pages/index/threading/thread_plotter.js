@@ -11,7 +11,7 @@ export class ThreadPlotter  {
   plot() {
     if (this.nbSegmentDrawn === this.threadComputer.nbSegments) {
       return
-    } else if (this.nbSegmentDrawn >  this.threadComputer.nbSegments)  {
+    } else if (this.nbSegmentDrawn > this.threadComputer.nbSegments)  {
       this.nbSegmentDrawn = 0
     }
 

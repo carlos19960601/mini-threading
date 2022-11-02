@@ -166,6 +166,17 @@ export class ThreadComputer {
     if (this.nbSegments === targetNbSegments) {
       return false
     } else if (this.nbSegments > targetNbSegments) {
+      // 移除多余的thread peg
+      this.thread.lowerNbSegments(targetNbSegments)
+
+      this.resetHiddenCanvas();
+      this.thread.iterateOnThreads(0, (thread, color) =>{
+        applyCanvasCompositing(this.hiddenCanvasCtx, color, this.lineOpacityInternal, LIGHTEN);
+
+        for (let iPeg = 0; iPeg + 1 < thread.length; iPeg++) {
+          this.drawSegmentOnHiddenCanvas(thread[iPeg], thread[iPeg + 1]);
+        }
+      })
       return true
     }
 
