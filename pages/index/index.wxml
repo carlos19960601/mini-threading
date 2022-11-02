@@ -12,15 +12,19 @@
     <view class="controller-setting">
       <text class="param-text">参数</text>
       <view class="param-view">
+        <text class="param-title">形状:</text>
+        <radio-group class="radio-group" bindchange="changeShape">
+          <radio value="0">矩形</radio>
+          <radio value="1" checked="true">椭圆</radio>
+        </radio-group>
+      </view>
+      <view class="param-view">
         <text class="param-title">线段数:</text>
         <slider class="slider-view" 
-        show-value step="10" min="200" max="5000" block-size="12"
+        show-value step="50" min="200" max="5000" block-size="12"
         bindchange="changeSegmentCount"></slider>
       </view>
-      <!-- <view class="param-view">
-        <text class="param-title">线段数:</text>
-        <slider class="slider-view" show-value step="10" min="200" max="5000" block-size="12"></slider>
-      </view> -->
+      
     </view>
   </view>
 </view>

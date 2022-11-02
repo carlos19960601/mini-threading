@@ -47,7 +47,20 @@
   align-items: center;
 }
 
+.radio-group{
+  font-size: 20rpx;
+}
+
 .slider-view {
   flex: 1;
-  margin: 2px;
+  margin: 5px 18px;
+}
+
+.radio-group {
+  margin-left: 42rpx;
+}
+
+wx-radio .wx-radio-input {
+  width: 24rpx;
+  height: 24rpx;
 }

@@ -32,6 +32,11 @@ Page({
   changeSegmentCount: function(e) {
     app.globalData.nbLines = e.detail.value
   },
+  changeShape: function(e)  {
+    app.globalData.shape = e.detail.value
+    needReset = true
+  },
+
   onReady: async function(){
     canvasPlotter = new PlotterCanvas2D()
     await canvasPlotter.init()
@@ -40,6 +45,9 @@ Page({
       canvasPlotter.canvas.requestAnimationFrame(this.renderLoop)
     })
     threadPlotter = new ThreadPlotter(canvasPlotter, threadComputer)
+  },
+  onShareAppMessage: function(){
+
   },
 
   renderLoop: function(){
