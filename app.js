@@ -11,7 +11,7 @@ App({
     pegsCount: 200,  // 钉子数量
     linesOpacity: 2 ,  // [1,5]
     linesThickness: 0.5, // [0.25,1]
-    nbLines: 1000, //  [500,15000]
+    nbLines: 200, //  [500,15000]
     blur: 0, //[0,20]
     displayPegs: true,
   }

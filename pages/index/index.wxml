@@ -1,16 +1,26 @@
 <!--index.wxml-->
 <view class="full-view">
   <view class="preview-canvas">
-    <canvas type="2d" id="preview-canvas" style="width: 300px; height: 300px;"></canvas>
+    <text>预览效果图</text>
+    <canvas type="2d" id="preview-canvas" style="width: 90vw; height: 90vw;"></canvas>
   </view>
   <view class="controller-view">
     <view class="source-view">
       <image src="{{pictureURL}}" mode="aspectFit"></image>
-      <button bindtap="choosePicture">选择图片</button>
+      <button bindtap="choosePicture" size="mini">选择图片</button>
     </view>
     <view class="controller-setting">
-      <text>参数</text>
+      <text class="param-text">参数</text>
+      <view class="param-view">
+        <text class="param-title">线段数:</text>
+        <slider class="slider-view" 
+        show-value step="10" min="200" max="5000" block-size="12"
+        bindchange="changeSegmentCount"></slider>
+      </view>
+      <!-- <view class="param-view">
+        <text class="param-title">线段数:</text>
+        <slider class="slider-view" show-value step="10" min="200" max="5000" block-size="12"></slider>
+      </view> -->
     </view>
   </view>
- 
 </view>

@@ -1,28 +1,53 @@
 /**index.wxss**/
 .full-view {
   height: 100vh;
+  overflow: hidden;
 }
 
 .preview-canvas {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
 .controller-view {
   display: flex;
-  flex-direction: "row";
+  flex-direction: row;
 }
 
-
 .source-view {
-  flex:1;
+  flex-direction: column;
+  align-items: center;
 }
 
 .source-view image{
-  width: 50vw;
-  height: 50vw;
+  width: 100%;
+  height: 100%;
+  margin: auto;
 }
 
 .controller-setting{
-  flex:1;
+  flex:2;
+  padding: 10px;
+}
+
+.param-text {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.param-title {
+  font-size: 20rpx;
+}
+
+.param-view {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.slider-view {
+  flex: 1;
+  margin: 2px;
 }

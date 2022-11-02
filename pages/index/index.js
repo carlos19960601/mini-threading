@@ -29,7 +29,9 @@ Page({
       }
     })
   },
- 
+  changeSegmentCount: function(e) {
+    app.globalData.nbLines = e.detail.value
+  },
   onReady: async function(){
     canvasPlotter = new PlotterCanvas2D()
     await canvasPlotter.init()
