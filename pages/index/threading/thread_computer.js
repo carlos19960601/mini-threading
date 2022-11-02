@@ -3,6 +3,7 @@ import { applyCanvasCompositing } from "../plotter/compositing";
 import {ThreadMonochrome} from  "./thread/thread_monochrome"
 import {resetCanvasCompositing}  from  '../plotter/compositing'
 import {Transformation} from './transformation'
+import {getCurrentTimestamp} from '../../../utils/util'
 
 const app = getApp()
 const TWO_PI = 2 * Math.PI;
@@ -13,17 +14,13 @@ export class ThreadComputer {
     return this.thread.totalNbSegments
   }
 
-  constructor(resetCallback) {
-    this.resetCallback = resetCallback
+  constructor(imageOnload) {
     this.hiddenCanvas = wx.createOffscreenCanvas({type: '2d'})
     this.hiddenCanvasCtx = this.hiddenCanvas.getContext('2d')
    
     this.sourceImage =  this.hiddenCanvas.createImage()
     this.sourceImage.src = '/images/cat.jpg'
-    this.sourceImage.onload = () => {
-      resetCallback()
-      this.reset(16/256, 1)
-    }
+    this.sourceImage.onload = imageOnload
   }
 
   reset(opacity, lineThickness) {
@@ -163,7 +160,7 @@ export class ThreadComputer {
   }
 
   computeNextSegments(maxMillisecondsTaken) {
-    const start  = performance.now()
+    const start  = getCurrentTimestamp()
 
     const targetNbSegments = app.globalData.nbLines;
     if (this.nbSegments === targetNbSegments) {
@@ -174,9 +171,8 @@ export class ThreadComputer {
 
     let lastColor = null
     while (this.nbSegments < targetNbSegments 
-      && performance.now() - start < maxMillisecondsTaken)  {
+      && getCurrentTimestamp() - start < maxMillisecondsTaken)  {
       const threadToGrow  = this.thread.getThreadGrow()
-
       if (lastColor !== threadToGrow.color) {
         applyCanvasCompositing(this.hiddenCanvasCtx, threadToGrow.color,  this.lineOpacityInternal, LIGHTEN)
         this.thread.enableSamplingFor(threadToGrow.color)

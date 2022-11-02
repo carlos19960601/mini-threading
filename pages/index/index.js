@@ -22,22 +22,25 @@ Page({
       count: 1,
       mediaType: ["image"],
       success: (res)=>{
+        threadComputer.sourceImage.src = res.tempFiles[0].tempFilePath
         that.setData({
           pictureURL: res.tempFiles[0].tempFilePath
         })
-        threadComputer.sourceImage.src = res.tempFiles[0].tempFilePath
       }
     })
   },
  
-  onReady: function(){
-    threadComputer = new ThreadComputer(()=>{needReset = true})
-    canvasPlotter = new PlotterCanvas2D(this)
-    threadPlotter  = new ThreadPlotter(canvasPlotter, threadComputer)
+  onReady: async function(){
+    canvasPlotter = new PlotterCanvas2D()
+    await canvasPlotter.init()
+    threadComputer = new ThreadComputer(()=>{
+      needReset = true
+      canvasPlotter.canvas.requestAnimationFrame(this.renderLoop)
+    })
+    threadPlotter = new ThreadPlotter(canvasPlotter, threadComputer)
   },
 
   renderLoop: function(){
-    console.log("renderLoop")
     if (needReset) {
       threadComputer.reset(linesOpacity(
         app.globalData.linesOpacity), 
@@ -50,7 +53,6 @@ Page({
     const computedSomething = threadComputer.computeNextSegments(MAX_COMPUTING_TIME_PER_FRAME)
 
     threadPlotter.plot()
-    console.log("rendering")
     canvasPlotter.canvas.requestAnimationFrame(this.renderLoop)
   }
 })

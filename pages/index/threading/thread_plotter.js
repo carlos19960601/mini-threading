@@ -4,7 +4,7 @@ export class ThreadPlotter  {
   nbSegmentDrawn =  0
 
   constructor(plotter,  threadComputer){
-    this.plotter =  plotter
+    this.plotter = plotter
     this.threadComputer =  threadComputer
   }
 

@@ -1,23 +1,23 @@
 import  {applyCanvasCompositing, resetCanvasCompositing}  from  './compositing'
 
 export class PlotterCanvas2D  {
-  constructor(pageThis) {
-    this.pageThis = pageThis
-    wx.createSelectorQuery()
-    .select("#preview-canvas")
-    .fields({node: true, size: true})
-    .exec((res)=>{
-      this.canvas = res[0].node
-      this.context = this.canvas.getContext('2d', {alpha: false})
-
-      const dpr = wx.getSystemInfoSync().pixelRatio
-      this.canvas.width = res[0].width * dpr
-      this.canvas.height = res[0].height * dpr
-      this.context.scale(dpr, dpr)
-      this.cssPixel = dpr
-
-      this.canvas.requestAnimationFrame(this.pageThis.renderLoop)
-    })
+  async init() {
+    return new Promise((resolve, reject)=>{
+      wx.createSelectorQuery()
+      .select("#preview-canvas")
+      .fields({node: true, size: true})
+      .exec((res)=>{
+        this.canvas = res[0].node
+        this.context = this.canvas.getContext('2d', {alpha: false})
+  
+        const dpr = wx.getSystemInfoSync().pixelRatio
+        this.canvas.width = res[0].width * dpr
+        this.canvas.height = res[0].height * dpr
+        this.context.scale(dpr, dpr)
+        this.cssPixel = dpr
+        resolve(null)
+      })
+    }).catch(err => {console.log(err)}) 
   }
 
   get size() {
