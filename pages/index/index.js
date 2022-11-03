@@ -89,7 +89,6 @@ Page({
   },
   onShareTimeline: async function(){
     const tempPath =  await this.saveToTempPath()
-    console.log(tempPath)
     return {
       title: "threading",
       imageUrl: tempPath,
