@@ -14,7 +14,8 @@ let needReset = false
 
 Page({
   data: {
-    pictureURL: "/images/cat.jpg"
+    pictureURL: "/images/cat.jpg",
+    drawPercent: 0,
   },
   choosePicture: function(){
     var that = this
@@ -44,6 +45,32 @@ Page({
     app.globalData.shape = e.detail.value
     needReset = true
   },
+  changePegsCount: function(e) {
+    app.globalData.pegsCount = e.detail.value
+    needReset = true
+  },
+  changeQuality: function(e) {
+    app.globalData.hiddenCanvasScale = e.detail.value
+    needReset = true
+  },
+  savePicture: function() {
+    wx.canvasToTempFilePath({
+      canvas: threadPlotter.plotter.canvas,
+      fileType:"jpg",
+      success: (res)=>{
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+        })
+      },
+    })
+  },
+  acquireInstructions: function() {
+    wx.showToast({
+      title: '正在开发中...',
+      icon: "none",
+    })
+  },
+
   onReady: async function(){
     canvasPlotter = new PlotterCanvas2D()
     await canvasPlotter.init()
@@ -54,7 +81,6 @@ Page({
     threadPlotter = new ThreadPlotter(canvasPlotter, threadComputer)
   },
   onShareAppMessage: function(){
-
   },
 
   renderLoop: function(){
@@ -70,7 +96,9 @@ Page({
     const computedSomething = threadComputer.computeNextSegments(MAX_COMPUTING_TIME_PER_FRAME)
 
     if (computedSomething)  {
-      
+      this.setData({
+        drawPercent: threadComputer.nbSegments * 100 /app.globalData.nbLines
+      })
     }
 
     threadPlotter.plot()

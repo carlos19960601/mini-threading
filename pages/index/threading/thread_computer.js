@@ -191,7 +191,6 @@ export class ThreadComputer {
       }
       this.computeSegment(threadToGrow.thread)
     }
-    console.log("computing")
 
     return true
   }

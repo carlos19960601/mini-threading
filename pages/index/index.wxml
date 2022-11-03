@@ -1,40 +1,61 @@
 <!--index.wxml-->
 <view class="full-view">
   <view class="preview-canvas">
-    <text>预览效果图</text>
+    <text>效果预览图</text>
     <canvas type="2d" id="preview-canvas" style="width: 90vw; height: 90vw;"></canvas>
+    <progress percent="{{drawPercent}}" stroke-width="2" style="width: 100%;"/>
   </view>
-  <view class="controller-view">
+  <view class="controller-container">
     <view class="source-view">
       <image src="{{pictureURL}}" mode="aspectFit"></image>
       <button bindtap="choosePicture" size="mini">选择图片</button>
     </view>
-    <view class="controller-setting">
+    <view class="controller-view">
       <text class="param-text">参数</text>
-      <view class="param-view">
-        <text class="param-title">形状:</text>
-        <radio-group class="radio-group" bindchange="changeShape">
-          <radio value="0">矩形</radio>
-          <radio value="1" checked="true">椭圆</radio>
-        </radio-group>
-      </view>
-      <view class="param-view">
-        <text class="param-title">线段数:</text>
-        <slider class="slider-view" 
-        show-value step="50" min="200" max="5000" block-size="12"
-        bindchange="changeSegmentCount"></slider>
-      </view>
-      <view class="param-view">
-        <text class="param-title">线段透明度:</text>
-        <slider class="slider-view" 
-        show-value step="1" min="1" max="5" block-size="12"
-        bindchange="changeOpacity"></slider>
-      </view>
-      <view class="param-view">
-        <text class="param-title">线段粗细:</text>
-        <slider class="slider-view" 
-        show-value step="0.25" min="0.25" max="1" block-size="12"
-        bindchange="changeThickness"></slider>
+      <view class="controller-setting">
+        <view class="param-view">
+          <text class="param-title">形状:</text>
+          <radio-group class="radio-group" bindchange="changeShape">
+            <radio value="0">矩形</radio>
+            <radio value="1" checked="true">椭圆</radio>
+          </radio-group>
+        </view>
+        <view class="param-view"  style="margin-top: 5px">
+          <text class="param-title">质量:</text>
+          <radio-group class="radio-group" bindchange="changeQuality">
+            <radio value="1">低</radio>
+            <radio value="2">中</radio>
+            <radio value="3" checked="true">高</radio>
+          </radio-group>
+        </view>
+        <view class="param-view">
+          <text class="param-title">线段数:</text>
+          <slider class="slider-view" 
+          show-value step="50" min="200" max="3000" block-size="12"
+          bindchange="changeSegmentCount"></slider>
+        </view>
+        <view class="param-view">
+          <text class="param-title">固定点数:</text>
+          <slider class="slider-view" 
+          show-value step="10" min="100" max="300" block-size="12"
+          bindchange="changePegsCount"></slider>
+        </view>
+        <view class="param-view">
+          <text class="param-title">线段透明度:</text>
+          <slider class="slider-view" 
+          show-value step="1" min="1" max="5" block-size="12"
+          bindchange="changeOpacity"></slider>
+        </view>
+        <view class="param-view">
+          <text class="param-title">线段粗细:</text>
+          <slider class="slider-view" 
+          show-value step="0.25" min="0.25" max="1" block-size="12"
+          bindchange="changeThickness"></slider>
+        </view>
+        <view class="button-view">
+          <button size="mini" bindtap="acquireInstructions">获取连线方式</button>
+          <button size="mini" bindtap="savePicture">保存图片</button>
+        </view>
       </view>
     </view>
   </view>
