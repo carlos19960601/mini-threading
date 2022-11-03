@@ -80,7 +80,20 @@ Page({
     })
     threadPlotter = new ThreadPlotter(canvasPlotter, threadComputer)
   },
-  onShareAppMessage: function(){
+  onShareAppMessage: async function(){
+    const tempPath =  await this.saveToTempPath()
+    return {
+      title: "threading",
+      imageUrl: tempPath,
+    }
+  },
+  onShareTimeline: async function(){
+    const tempPath =  await this.saveToTempPath()
+    console.log(tempPath)
+    return {
+      title: "threading",
+      imageUrl: tempPath,
+    }
   },
 
   renderLoop: function(){
@@ -103,5 +116,17 @@ Page({
 
     threadPlotter.plot()
     canvasPlotter.canvas.requestAnimationFrame(this.renderLoop)
+  },
+
+  saveToTempPath: function(){
+    return new Promise((resolve)=>{
+      wx.canvasToTempFilePath({
+        canvas: threadPlotter.plotter.canvas,
+        fileType:"jpg",
+        success: (res)=>{
+          resolve(res.tempFilePath)
+        },
+      })
+    })  
   }
 })

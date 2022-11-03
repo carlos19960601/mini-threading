@@ -9,9 +9,9 @@ App({
     invertColors: false, // black background
     shape: "1", // 0: rectangle 1: Ellipsis
     pegsCount: 200,  // 钉子数量
-    linesOpacity: 2 ,  // [1,5]
+    linesOpacity: 4 ,  // [1,5]
     linesThickness: 0.25, // [0.25,1]
-    nbLines: 200, //  [500,15000]
+    nbLines: 300, //  [500,15000]
     displayPegs: true,
   }
 })

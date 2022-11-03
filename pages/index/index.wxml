@@ -31,19 +31,19 @@
         <view class="param-view">
           <text class="param-title">线段数:</text>
           <slider class="slider-view" 
-          show-value step="50" min="200" max="3000" block-size="12"
+          show-value step="50" min="200" max="3000"  value="300" block-size="12"
           bindchange="changeSegmentCount"></slider>
         </view>
         <view class="param-view">
           <text class="param-title">固定点数:</text>
           <slider class="slider-view" 
-          show-value step="10" min="100" max="300" block-size="12"
+          show-value step="10" min="100" max="300" value="200" block-size="12"
           bindchange="changePegsCount"></slider>
         </view>
         <view class="param-view">
           <text class="param-title">线段透明度:</text>
           <slider class="slider-view" 
-          show-value step="1" min="1" max="5" block-size="12"
+          show-value step="1" min="1" max="5" value="4" block-size="12"
           bindchange="changeOpacity"></slider>
         </view>
         <view class="param-view">
